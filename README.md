@@ -1,10 +1,10 @@
 # Fundamental - Intergalactic Expanded
 Hello! This is a mod for Fundamental! See bottom for instructions on how to play.
-# Features:
+## Features:
 * 2 new elements (working)
 * New universe milestones (Not working, needs heavy balancing)
 * New void reward (Works, but does not get awarded. It is always unlocked. WIP)
-# Planned Features:
+## Planned Features:
 * New intergalactic upgrades
 * New end type (requirement: U0 end)
 * Another new end type (requirement: 10,000 Dark Energy)
