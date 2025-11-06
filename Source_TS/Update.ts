@@ -1175,6 +1175,7 @@ export const visualUpdate = (ignoreOffline = false) => {
             getId('inflationSupervoid4').style.display = supervoid[4] >= 3 ? '' : 'none';
             getId('inflationSupervoid5').style.display = supervoid[4] >= 4 ? '' : 'none';
             getId('inflationSupervoid6').style.display = supervoid[2] >= 3 ? '' : 'none';
+            getId('inflationSupervoid7').style.display = supervoid[1] >= 4 ? '' : 'none';
             getQuery('#inflationMilestone1 > span').textContent = format(1.5);
             for (let i = 1; i < 9; i++) {
                 getId(`inflationMilestone${i}`).classList[universes >= i ? 'remove' : 'add']('uncompleted');

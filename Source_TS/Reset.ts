@@ -37,8 +37,8 @@ export const reset = (type: 'discharge' | 'vaporization' | 'rank' | 'collapse' |
                 if (!player.inflation.vacuum) { continue; }
                 const selfmade = building[i as 1].true;
                 if (s === 1) {
-                    building[1].current.setValue(selfmade);
-                    building[1].total.setValue(selfmade);
+                    building[i].current.setValue(selfmade);
+                    building[i].total.setValue(selfmade);
                 }
                 const energy = energyType[s][i] * selfmade;
                 dischargeInfo.energyTrue += energy;
@@ -330,7 +330,10 @@ export const resetVacuum = (level = 0) => {
         player.strange[0].current = total * (1 + total) / 2;
     } else { player.challenges.void = cloneArray(playerStart.challenges.void); }
     if (universes >= 1) {
-        player.strange[0].current += Math.ceil(player.verses[0].true ** (vacuum ? 2 : 1.5));
+        let power = 1;
+        if(vacuum){power = 2;}else{power = 1.5;}
+        if(universes >= 11){power += 0.5;}
+        player.strange[0].current += Math.ceil(player.verses[0].true ** power);
         if (vacuum) { player.strangeness[1][8] = 2; }
     }
     if (universes >= 2) { player.strangeness[5][4] = 1; }

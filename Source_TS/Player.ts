@@ -969,7 +969,9 @@ export const global: globalType = {
             '[33] Arsenic',
             '[34] Selenium',
             '[35] Bromine',
-            '[36] Krypton'
+            '[36] Krypton',
+            '[37] Rubidium',
+            '[38] Strontium'
         ],
         effectText: [
             () => `Element with no protons, true head of this table.\nThis one is ${Math.random() < 0.1 ? (Math.random() < 0.1 ? 'an illusive Tetraneutron, or maybe even Pentaneutron. Wait where did it go? Was it even there?' : 'a rare Dineutron, but it is already gone...') : 'a simple Mononeutron, it will stay with you for as long as it can.'}`,
@@ -1008,13 +1010,15 @@ export const global: globalType = {
             () => 'Toxic enough to buff only Quasi-stars with Black holes effect.',
             () => "Capable of sensing an +1 increase to the max level of 'Star system'.",
             () => "The only liquid nonmetal to increase the max level of 'Inner Black hole' by +1.",
-            () => `Nothing special, just an ${format(1.21)}x decrease to Galaxies cost.`
+            () => `Nothing special, just an ${format(1.21)}x decrease to Galaxies cost.`,
+            () => `A highly reactive metal that will decrease the cost scaling of galaxies by ${format(-0.005)}.`,
+            () => 'A reactive metal that will increase the max level of \'Star System\' by +1.'
         ],
         cost: [ //New Element cost must be higher than previous one
             0, 1000, 4000, 2e4, 1e5, 1e8, 1e10, 4e11, 8e12, 6e13,
             1e15, 1e20, 1e22, 1e24, 1.4e26, 1e28, 1e30, 1e32, 2e36, 1e38,
             1e39, 1e41, 2e42, 3e43, 4e44, 5e45, 1e48, 1e54, 1e58, 1e140,
-            1e220, 1e240, 1e260, '1e380', '1e520', '1e600', '1e820'
+            1e220, 1e240, 1e260, '1e380', '1e520', '1e600', '1e820', '1e1000', '1e1200'
         ] as unknown as Overlimit[],
         maxActive: 29
     },
@@ -1030,7 +1034,8 @@ export const global: globalType = {
                 'Strange boost',
                 'Energy increase',
                 'Conservation of Mass',
-                'Conservation of Energy'
+                'Conservation of Energy',
+                'Better Conservation'
             ],
             effectText: [
                 () => `Boost all Microworld Structures by ${format(player.inflation.vacuum ? 2 : 1.8)}.`,
@@ -1045,12 +1050,13 @@ export const global: globalType = {
                     const improved = player.challenges.supervoid[1] >= 2;
                     return `No Mass will be lost when creating Preons${improved ? '' : ', only works when Accretion Stage is unlocked'}.\nSecond level will disable auto Accretion Structures, if Cosmic dust is hardcapped, until will have enough Mass for the highest Solar mass conversion${improved ? " or to increase current Rank, if its below 'Protostar' and 'Automatic Rank' level is below 2" : ', only works if Interstellar Stage is unlocked'}.${global.strangenessInfo[1].max[8] > 2 ? '\nThird level will make auto Structures ignore wait value for Dark Structures if Dark matter is softcapped.' : ''}`;
                 },
-                () => `No Energy will be lost when creating Upgrades or Researches${player.challenges.supervoid[4] < 1 ? ', only works when Interstellar Stage is unlocked' : ''}.`
+                () => `No Energy will be lost when creating Upgrades or Researches${player.challenges.supervoid[4] < 1 ? ', only works when Interstellar Stage is unlocked' : ''}.`,
+                () => `Make all energy not reset on non-Stage resets.`
             ],
             cost: [],
-            firstCost: [1, 1, 1, 2, 12, 2, 24, 2, 12, 15600],
-            scaling: [2.46, 2, 6, 4, 400, 1, 1, 6, 10, 1e308],
-            max: [6, 4, 4, 2, 1, 1, 1, 2, 2, 1],
+            firstCost: [1, 1, 1, 2, 12, 2, 24, 2, 12, 15600, 1e12],
+            scaling: [2.46, 2, 6, 4, 400, 1, 1, 6, 10, 1e308, 1e308],
+            max: [6, 4, 4, 2, 1, 1, 1, 2, 2, 1, 1],
             maxActive: 7
         }, { //Stage 2
             name: [
@@ -1454,7 +1460,8 @@ export const global: globalType = {
             [], [
                 () => 'Perform the Discharge',
                 () => 'Unlock Accretion Stage',
-                () => 'Unlock Submerged Stage'
+                () => 'Unlock Submerged Stage',
+                () => `Discharge with ${format(1e6)} Energy`
             ], [
                 () => 'Vaporize the Drops',
                 () => `Have more than ${format(1e4)} Clouds`,
@@ -1481,14 +1488,14 @@ export const global: globalType = {
         ],
         rewardText: [[
             [],
-            ["'Energy increase' (Microworld)", "'Conservation of Mass' (Microworld)", "'Improved flow' (Submerged)"],
+            ["'Energy increase' (Microworld)", "'Conservation of Mass' (Microworld)", "'Improved flow' (Submerged)", "'Better conservation' (Microworld)"],
             ["'Mechanical spread' (Submerged)", "'Ocean world' (Submerged)", "'Galactic tide' (Intergalactic)"],
             ['Multiple max level increases', 'Multiple max level increases', 'Multiple max level increases', 'Multiple max level increases', "'Strange growth' (Intergalactic)", "'Automatic Merge' (Intergalactic)"],
             ['Max level increased for auto resets', "'Conservation of Energy' (Microworld)", "'Neutronium' (Interstellar)", "'Mass delay' (Accretion)", "'Newer Upgrade' (Interstellar)"],
             ["'Rank raise' (Accretion)", 'New Abyss themed Strangeness', "Max level increased for 'Automatic Merge'", "Max level increased for 'Automatic Galaxy' (WIP)"]
         ], [
             [],
-            ["'Discharge improvement' (Advanced)", "'Improved conservation' (Milestone)", "'Conservation of resources' (Advanced)"],
+            ["'Discharge improvement' (Advanced)", "'Improved conservation' (Milestone)", "'Conservation of resources' (Advanced)", "'Larger Disks' (Milestone)"],
             ["'Vaporization improvement' (Advanced)", "'Primordial fluctuations' (Advanced)", '"Strange Ocean" (Milestone)'],
             ["'Indestructible matter' (Milestone)", "'Latest Preons' (Milestone)", "'Improved offline' (Basic)", "'Rank improvement' (Advanced)", "'Stranger gain' (Advanced)", 'Work in progress'],
             ["Improved the 'Improved conservation'", "'Collapse improvement' (Advanced)", "'Main Stars' (Milestone)", "'Limitless Mass' (Milestone)", "'Auto Strangeness' (Basic, WIP)"],

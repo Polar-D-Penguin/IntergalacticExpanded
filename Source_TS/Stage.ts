@@ -1202,6 +1202,7 @@ export const calculateBuildingsCost = (index: number, stageIndex: number): Overl
     } else if (stageIndex === 5) {
         if (index === 3) {
             if (player.elements[32] >= 1) { increase -= 0.01; }
+            if (player.elements[38] >= 1) { increase -= 0.005; }
             if (player.challenges.active === 0) {
                 increase += 0.05;
             } else if (player.challenges.active === 1) {
@@ -1521,7 +1522,7 @@ export const buyUpgrades = (upgrade: number, stageIndex: number, type: 'upgrades
         if (level === 1) {
             if (player.collapse.maxElement < upgrade) { player.collapse.maxElement = upgrade; }
 
-            if ([7, 16, 20, 25, 28, 31, 34].includes(upgrade)) {
+            if ([7, 16, 20, 25, 28, 31, 34, 38].includes(upgrade)) {
                 calculateMaxLevel(1, 4, 'researches', true);
             } else if (upgrade === 9 || upgrade === 17) {
                 calculateMaxLevel(0, 4, 'researches', true);
@@ -1871,6 +1872,7 @@ export const calculateMaxLevel = (research: number, stageIndex: number, type: 'r
                 if (player.elements[28] >= 1) { max++; }
                 if (player.elements[31] >= 1) { max++; }
                 if (player.elements[34] >= 1) { max++; }
+                if (player.elements[38] >= 1) { max++; }
             } else if (research === 2) {
                 max = player.elements[11] >= 1 ? 2 : 1;
             } else if (research === 5) {
@@ -2390,7 +2392,7 @@ const dischargeResetCheck = (goals = false): boolean => {
     const info = global.dischargeInfo;
     const energy = player.discharge.energy;
     const level = player.strangeness[1][4];
-
+    awardVoidReward(1);
     info.next = calculateEffects.dischargeCost();
     if (goals) {
         if (level >= 2) {
@@ -2423,11 +2425,12 @@ export const dischargeResetUser = async() => {
 
 const dischargeReset = (freeGoals = false) => {
     const increased = freeGoals || (player.strangeness[1][4] < 2 && player.discharge.energy >= global.dischargeInfo.next);
+    awardVoidReward(1);
     if (increased) {
         player.discharge.current++;
         if (!freeGoals) { player.discharge.energy -= global.dischargeInfo.next; }
     }
-    awardVoidReward(1);
+
     if (!freeGoals) {
         addIntoLog(`Discharge reset${increased ? ', Goal reached' : ''}`);
         reset('discharge', player.challenges.active === 0 ? [1, 2, 3, 4, 5] : [1]);
@@ -3004,6 +3007,7 @@ const awardVoidReward = (index: number): void => {
     let progress = 1;
     if (index === 1) {
         progress += player.researchesExtra[1][2];
+        if(player.discharge.current >= 1000000) { console.log ('done'); progress += 1; }
     } else if (index === 2) {
         if (player.vaporization.clouds > 1e4) { progress++; }
         if (player.vaporization.clouds > 1e12 && (player.tree[1][5] >= 4 || player.accretion.rank <= 1)) { progress++; }

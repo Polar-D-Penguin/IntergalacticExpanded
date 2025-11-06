@@ -190,6 +190,7 @@ export const checkUpgrade = (upgrade: number, stageIndex: number, type: 'upgrade
                     if (upgrade === 7) { return player.challenges.void[1] >= 1; }
                     if (upgrade === 8) { return player.challenges.void[1] >= 2; }
                     if (upgrade === 9) { return player.challenges.void[4] >= 2; }
+                    if (upgrade === 10) { return player.challenges.void[1] >= 4; }
                 } else if (stageIndex === 2) {
                     if (upgrade === 7) { return player.challenges.void[1] >= 3; }
                     if (upgrade === 8) { return player.challenges.void[2] >= 1; }
@@ -256,7 +257,7 @@ export const checkUpgrade = (upgrade: number, stageIndex: number, type: 'upgrade
 export const allowedToBeReset = (check: number, stageIndex: number, type: 'structures' | 'upgrades' | 'researches' | 'researchesExtra' | 'elements'): boolean => {
     switch (type) {
         case 'structures':
-            if (stageIndex === 1) { return check !== 1 || !player.inflation.vacuum || player.challenges.supervoid[3] < 1; }
+            if (stageIndex === 1) { return !player.inflation.vacuum || player.challenges.supervoid[3] < 1 || player.strangeness[1][10] < 1; }
             if (stageIndex === 5) { return check !== 3; }
             break;
         case 'upgrades':
