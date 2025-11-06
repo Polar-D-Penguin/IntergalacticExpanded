@@ -1,7 +1,14 @@
-# Fundamental
-Attempt to make something\
-Can be played at 'https://awwhy.github.io/Fundamental/' \
-If you want to report a bug (here or on discord), try to give details on how it happened and screenshot of any errors in console (Errors look like small wall of red text, as example: Uncaught TypeError: Cannot read properties of null (reading '0'))
+# Fundamental - Intergalactic Expanded
+Hello! This is a mod for Fundamental! See bottom for instructions on how to play.
+# Features:
+* 2 new elements (working)
+* New universe milestones (Not working, needs heavy balancing)
+* New void reward (Works, but does not get awarded. It is always unlocked. WIP)
+# Planned Features:
+* New intergalactic upgrades
+* New end type (requirement: U0 end)
+* Another new end type (requirement: 10,000 Dark Energy)
+* New darkness upgrades
 
 #### Should be supported by:
 1. Modern browsers,
